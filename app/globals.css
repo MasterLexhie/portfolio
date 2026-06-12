@@ -1,26 +1,73 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafaf9;
+  --foreground: #1c1917;
+  --surface: #f5f5f4;
+  --accent: #1a2e1a;
+  --muted: #78716c;
+  --border: #e7e5e4;
+}
+
+.dark {
+  --background: #0c0c0b;
+  --foreground: #e7e5e4;
+  --surface: #161614;
+  --accent: #4a8f5a;
+  --muted: #a8a29e;
+  --border: #2a2a28;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-instrument-serif);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* The one permitted animation: a gentle fade-in, 400ms, opacity only */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fade-in 400ms ease-out both;
+}
+
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-links: var(--accent);
+  --tw-prose-quotes: var(--muted);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--muted);
+  --tw-prose-hr: var(--border);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
 }

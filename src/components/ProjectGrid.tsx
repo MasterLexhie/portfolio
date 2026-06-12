@@ -1,0 +1,51 @@
+'use client'
+
+import { useState } from 'react'
+import { ProjectCard } from './ProjectCard'
+import type { DummyProject, ProjectType } from '@/src/lib/dummy-data'
+
+type Filter = 'all' | ProjectType | 'case-study'
+
+const filters: { value: Filter; label: string }[] = [
+  { value: 'all', label: 'All' },
+  { value: 'full-stack', label: 'Full-stack' },
+  { value: 'backend', label: 'Backend' },
+  { value: 'frontend', label: 'Frontend' },
+  { value: 'web3', label: 'Web3' },
+  { value: 'case-study', label: 'Case studies only' },
+]
+
+export function ProjectGrid({ projects }: { projects: DummyProject[] }) {
+  const [active, setActive] = useState<Filter>('all')
+
+  const filtered = projects.filter((p) => {
+    if (active === 'all') return true
+    if (active === 'case-study') return !!(p.problem && p.solution && p.result)
+    return p.type === active
+  })
+
+  return (
+    <>
+      <div className="flex gap-2 overflow-x-auto pb-2 px-4 md:px-8 mb-6 md:mb-8">
+        {filters.map((f) => (
+          <button
+            key={f.value}
+            onClick={() => setActive(f.value)}
+            className={`whitespace-nowrap text-sm px-4 py-2 rounded-lg min-h-[44px] transition-colors ${
+              active === f.value
+                ? 'bg-foreground text-background'
+                : 'border border-border text-muted hover:text-foreground hover:border-foreground'
+            }`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 px-4 md:px-8 pb-16">
+        {filtered.map((p) => (
+          <ProjectCard key={p.id} project={p} />
+        ))}
+      </div>
+    </>
+  )
+}
