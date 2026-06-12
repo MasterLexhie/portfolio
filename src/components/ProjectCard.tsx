@@ -18,20 +18,20 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <Link href={`/work/${project.slug}`} className="group block cursor-pointer">
-      <div className="relative overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-200 group-hover:border-neutral-300 dark:group-hover:border-neutral-700">
+      <div className="relative overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-300 group-hover:border-neutral-400 dark:group-hover:border-neutral-600">
         <div className="relative w-full aspect-[4/3]">
           <Image
             src={project.cover_image.url}
             alt={project.cover_image.alt}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.015]"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
             sizes="(max-width: 768px) 50vw, 33vw"
           />
         </div>
       </div>
       <div className="mt-3">
-        <div className="flex items-center justify-between pb-2 border-b border-border">
-          <span className="text-[10px] md:text-xs font-mono uppercase tracking-wide text-muted">
+        <div className="flex items-center justify-between pb-2 border-b border-border transition-colors duration-300 group-hover:border-neutral-400 dark:group-hover:border-neutral-600">
+          <span className="text-[10px] md:text-xs font-mono uppercase tracking-wide text-muted transition-colors duration-300 group-hover:text-foreground">
             {typeLabels[project.type] ?? project.type}
           </span>
           {hasCaseStudy && (
@@ -49,12 +49,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </h3>
           <span className="flex items-center gap-2 shrink-0 mt-0.5">
             {project.github_url && (
-              <span className="text-[10px] font-mono text-muted">
+              <span className="text-[10px] font-mono text-muted transition-colors duration-300 group-hover:text-foreground">
                 GitHub {'↗'}
               </span>
             )}
             {project.live_url && (
-              <span className="text-[10px] font-mono text-muted">
+              <span className="text-[10px] font-mono text-muted transition-colors duration-300 group-hover:text-foreground">
                 Live {'↗'}
               </span>
             )}

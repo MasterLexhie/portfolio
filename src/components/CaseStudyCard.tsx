@@ -17,7 +17,7 @@ const typeLabels: Record<string, string> = {
 export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
   return (
     <Link href={`/work/${project.slug}`} className="group block cursor-pointer">
-      <div className="overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-200 group-hover:border-neutral-300 dark:group-hover:border-neutral-700">
+      <div className="overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-300 group-hover:border-neutral-400 dark:group-hover:border-neutral-600">
         <div
           className={`relative w-full ${featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}
         >
@@ -25,14 +25,14 @@ export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
             src={project.cover_image.url}
             alt={project.cover_image.alt}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.015]"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
             sizes={featured ? '100vw' : '(max-width: 768px) 100vw, 50vw'}
           />
         </div>
       </div>
       <div className="mt-5">
         <div className="flex items-baseline justify-between gap-4 pb-3 border-b border-border">
-          <span className="text-xs font-mono text-muted uppercase tracking-wide">
+          <span className="text-xs font-mono text-muted uppercase tracking-wide transition-colors duration-300 group-hover:text-foreground">
             {typeLabels[project.type] ?? project.type}
           </span>
           <span className="text-xs font-mono text-accent text-right">
@@ -53,9 +53,15 @@ export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
         >
           {project.summary}
         </p>
-        <div className="border-t border-neutral-200 dark:border-neutral-800 mt-4 py-3 flex items-center justify-between">
-          <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
-            Read the case study &rarr;
+        <div className="border-t border-neutral-200 dark:border-neutral-800 mt-4 py-3 flex items-center justify-between transition-colors duration-300 group-hover:border-neutral-400 dark:group-hover:border-neutral-600">
+          <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors duration-300">
+            Read the case study{' '}
+            <span
+              className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              &rarr;
+            </span>
           </span>
           <span className="text-xs text-foreground/40 font-mono">
             {project.role}

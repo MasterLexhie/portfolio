@@ -1,11 +1,16 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { ThemeToggle } from './ThemeToggle'
 
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 border-b border-border">
@@ -18,13 +23,23 @@ export function Nav() {
         <div className="hidden md:flex items-center gap-6">
           <Link
             href="/work"
-            className="text-sm text-muted hover:text-foreground transition-colors min-h-[44px] flex items-center"
+            aria-current={isActive('/work') ? 'page' : undefined}
+            className={`text-sm transition-colors min-h-[44px] flex items-center ${
+              isActive('/work')
+                ? 'text-foreground underline underline-offset-8 decoration-1'
+                : 'text-muted hover:text-foreground'
+            }`}
           >
             Work
           </Link>
           <Link
             href="/about"
-            className="text-sm text-muted hover:text-foreground transition-colors min-h-[44px] flex items-center"
+            aria-current={isActive('/about') ? 'page' : undefined}
+            className={`text-sm transition-colors min-h-[44px] flex items-center ${
+              isActive('/about')
+                ? 'text-foreground underline underline-offset-8 decoration-1'
+                : 'text-muted hover:text-foreground'
+            }`}
           >
             About
           </Link>
@@ -77,14 +92,24 @@ export function Nav() {
             <Link
               href="/work"
               onClick={() => setMenuOpen(false)}
-              className="text-2xl font-serif py-3 min-h-[48px] flex items-center"
+              aria-current={isActive('/work') ? 'page' : undefined}
+              className={`text-2xl font-serif py-3 min-h-[48px] flex items-center ${
+                isActive('/work')
+                  ? 'underline underline-offset-8 decoration-1'
+                  : 'text-muted'
+              }`}
             >
               Work
             </Link>
             <Link
               href="/about"
               onClick={() => setMenuOpen(false)}
-              className="text-2xl font-serif py-3 min-h-[48px] flex items-center"
+              aria-current={isActive('/about') ? 'page' : undefined}
+              className={`text-2xl font-serif py-3 min-h-[48px] flex items-center ${
+                isActive('/about')
+                  ? 'underline underline-offset-8 decoration-1'
+                  : 'text-muted'
+              }`}
             >
               About
             </Link>
