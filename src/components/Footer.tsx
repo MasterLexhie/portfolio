@@ -16,19 +16,19 @@ export function Footer() {
             <div className="flex flex-col gap-2">
               <Link
                 href="/work"
-                className="text-sm text-muted hover:text-foreground transition-colors"
+                className="text-sm text-foreground/60 dark:text-foreground/70 hover:text-foreground transition-colors duration-150"
               >
                 Work
               </Link>
               <Link
                 href="/about"
-                className="text-sm text-muted hover:text-foreground transition-colors"
+                className="text-sm text-foreground/60 dark:text-foreground/70 hover:text-foreground transition-colors duration-150"
               >
                 About
               </Link>
               <Link
                 href="/#contact"
-                className="text-sm text-muted hover:text-foreground transition-colors"
+                className="text-sm text-foreground/60 dark:text-foreground/70 hover:text-foreground transition-colors duration-150"
               >
                 Contact
               </Link>
@@ -44,7 +44,7 @@ export function Footer() {
                 href="https://github.com/placeholder"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted hover:text-foreground transition-colors"
+                className="text-sm text-foreground/60 dark:text-foreground/70 hover:text-foreground transition-colors duration-150"
               >
                 GitHub
               </a>
@@ -52,13 +52,13 @@ export function Footer() {
                 href="https://linkedin.com/in/placeholder"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted hover:text-foreground transition-colors"
+                className="text-sm text-foreground/60 dark:text-foreground/70 hover:text-foreground transition-colors duration-150"
               >
                 LinkedIn
               </a>
               <a
                 href="mailto:kanuprecious89@gmail.com"
-                className="text-sm text-muted hover:text-foreground transition-colors"
+                className="text-sm text-foreground/60 dark:text-foreground/70 hover:text-foreground transition-colors duration-150"
               >
                 Email
               </a>

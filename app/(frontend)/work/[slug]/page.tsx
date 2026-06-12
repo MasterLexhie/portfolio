@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { RichText } from '@/src/components/RichText'
 import { TestimonialBlock } from '@/src/components/TestimonialBlock'
+import { FadeIn } from '@/src/components/FadeIn'
 // TODO: replace with Payload query in Phase 2
 import {
   dummyProjects,
@@ -85,6 +86,13 @@ export default async function CaseStudyPage({
     <>
       <article className="py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 text-sm text-foreground/50 hover:text-foreground transition-colors py-4 mb-2"
+          >
+            <span aria-hidden="true">&larr;</span>
+            All projects
+          </Link>
           <div className="md:grid md:grid-cols-[1fr_280px] md:gap-12">
             {/* Main content */}
             <div>
@@ -148,22 +156,28 @@ export default async function CaseStudyPage({
 
               {/* Problem */}
               <section id="problem" className="mb-14">
-                <SectionLabel num={num('problem')}>The problem</SectionLabel>
-                <RichText content={project.problem} />
+                <FadeIn>
+                  <SectionLabel num={num('problem')}>The problem</SectionLabel>
+                  <RichText content={project.problem} />
+                </FadeIn>
               </section>
 
               {/* Discovery */}
               {project.discovery && (
                 <section id="discovery" className="mb-14">
-                  <SectionLabel num={num('discovery')}>Discovery</SectionLabel>
-                  <RichText content={project.discovery} />
+                  <FadeIn>
+                    <SectionLabel num={num('discovery')}>Discovery</SectionLabel>
+                    <RichText content={project.discovery} />
+                  </FadeIn>
                 </section>
               )}
 
               {/* Solution / Decision */}
               <section id="solution" className="mb-14">
-                <SectionLabel num={num('solution')}>The decision</SectionLabel>
-                <RichText content={project.solution} />
+                <FadeIn>
+                  <SectionLabel num={num('solution')}>The decision</SectionLabel>
+                  <RichText content={project.solution} />
+                </FadeIn>
               </section>
 
               {/* Architecture image */}
@@ -201,20 +215,25 @@ export default async function CaseStudyPage({
 
               {/* Results */}
               <section id="results" className="mb-14">
-                <SectionLabel num={num('results')}>Results</SectionLabel>
-                <RichText content={project.result} />
+                <FadeIn>
+                  <SectionLabel num={num('results')}>Results</SectionLabel>
+                  <RichText content={project.result} />
+                </FadeIn>
               </section>
 
               {/* Testimonial */}
               {testimonial && (
                 <section id="testimonial" className="mb-14 py-10 border-y border-border">
-                  <TestimonialBlock testimonial={testimonial} />
+                  <FadeIn>
+                    <TestimonialBlock testimonial={testimonial} />
+                  </FadeIn>
                 </section>
               )}
 
               {/* Tech stack */}
               {project.tech_stack.length > 0 && (
                 <section id="stack" className="mb-14">
+                  <FadeIn>
                   <SectionLabel num={num('stack')}>Tech stack</SectionLabel>
                   <div className="flex flex-wrap gap-2">
                     {project.tech_stack.map((t) => (
@@ -226,6 +245,7 @@ export default async function CaseStudyPage({
                       </span>
                     ))}
                   </div>
+                  </FadeIn>
                 </section>
               )}
 
@@ -236,7 +256,7 @@ export default async function CaseStudyPage({
                 </p>
                 <Link
                   href="/#contact"
-                  className="text-sm text-accent hover:underline underline-offset-4"
+                  className="text-sm text-foreground/70 hover:text-foreground transition-colors"
                 >
                   Get in touch &rarr;
                 </Link>
@@ -278,7 +298,7 @@ export default async function CaseStudyPage({
                   </p>
                   <Link
                     href="/#contact"
-                    className="w-full text-center text-sm bg-accent text-white px-4 py-2.5 rounded-lg hover:bg-accent/90 transition-colors min-h-[44px] flex items-center justify-center"
+                    className="w-full text-center text-sm bg-background text-foreground px-4 py-2.5 rounded-lg hover:bg-surface transition-colors min-h-[44px] flex items-center justify-center"
                   >
                     Book a call
                   </Link>
@@ -294,7 +314,7 @@ export default async function CaseStudyPage({
         <p className="text-sm font-medium truncate mr-4">{project.title}</p>
         <Link
           href="/#contact"
-          className="shrink-0 text-sm bg-accent text-white px-4 py-2.5 rounded-lg min-h-[44px] flex items-center"
+          className="shrink-0 text-sm bg-accent text-accent-foreground px-4 py-2.5 rounded-lg hover:bg-accent-hover transition-colors min-h-[44px] flex items-center"
         >
           Get in touch &rarr;
         </Link>

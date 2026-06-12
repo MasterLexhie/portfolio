@@ -16,8 +16,8 @@ const typeLabels: Record<string, string> = {
 
 export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
   return (
-    <Link href={`/work/${project.slug}`} className="group block">
-      <div className="overflow-hidden rounded-lg bg-surface">
+    <Link href={`/work/${project.slug}`} className="group block cursor-pointer">
+      <div className="overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-200 group-hover:border-neutral-300 dark:group-hover:border-neutral-700">
         <div
           className={`relative w-full ${featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}
         >
@@ -25,7 +25,7 @@ export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
             src={project.cover_image.url}
             alt={project.cover_image.alt}
             fill
-            className="object-cover group-hover:opacity-90 transition-opacity"
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.015]"
             sizes={featured ? '100vw' : '(max-width: 768px) 100vw, 50vw'}
           />
         </div>
@@ -53,10 +53,12 @@ export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
         >
           {project.summary}
         </p>
-        <div className="flex items-center justify-between mt-4">
-          <span className="text-xs text-muted">{project.role}</span>
-          <span className="text-sm text-accent">
+        <div className="border-t border-neutral-200 dark:border-neutral-800 mt-4 py-3 flex items-center justify-between">
+          <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
             Read the case study &rarr;
+          </span>
+          <span className="text-xs text-foreground/40 font-mono">
+            {project.role}
           </span>
         </div>
       </div>

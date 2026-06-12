@@ -31,7 +31,7 @@ export function Nav() {
           <ThemeToggle />
           <Link
             href="/#contact"
-            className="text-sm bg-accent text-white px-5 py-2.5 rounded-lg hover:bg-accent/90 transition-colors min-h-[44px] flex items-center"
+            className="text-sm bg-accent text-accent-foreground px-5 py-2.5 rounded-lg hover:bg-accent-hover transition-colors min-h-[44px] flex items-center"
           >
             Contact
           </Link>

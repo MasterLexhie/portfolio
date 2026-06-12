@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { MetricCard } from '@/src/components/MetricCard'
 import { CaseStudyCard } from '@/src/components/CaseStudyCard'
 import { TestimonialBlock } from '@/src/components/TestimonialBlock'
 import { ContactForm } from '@/src/components/ContactForm'
 import { SectionHeading } from '@/src/components/SectionHeading'
+import { HeroContent } from '@/src/components/HeroContent'
+import { FadeIn } from '@/src/components/FadeIn'
 // TODO: replace with Payload query in Phase 2
 import { getFeaturedProjects, getHomepageTestimonials } from '@/src/lib/dummy-data'
 
@@ -48,43 +49,28 @@ export default function HomePage() {
       />
 
       {/* Section 1 — Hero */}
-      <section className="min-h-[80vh] md:min-h-screen flex items-center relative">
-        <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-0 w-full fade-in">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-px bg-foreground/40" aria-hidden="true" />
-            <p className="text-xs tracking-widest uppercase text-muted">
-              Full-stack engineer &middot; Product owner
-            </p>
-          </div>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl tracking-tight max-w-3xl leading-[1.08]">
-            I build products that <em className="italic">ship</em> — from idea
-            to production.
-          </h1>
-          <p className="text-base md:text-lg text-muted mt-6 max-w-md leading-relaxed">
-            End-to-end engineering with a bias toward decisions that hold up
-            six months later.
-          </p>
-          <div className="mt-10">
-            <Link
-              href="#work"
-              className="inline-flex items-center justify-center w-full md:w-auto bg-accent text-white px-8 py-3 rounded-lg text-sm hover:bg-accent/90 transition-colors min-h-[44px]"
-            >
-              See the work
-            </Link>
-          </div>
-          <div className="flex items-center gap-2 mt-5">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-            <span className="text-xs text-muted">
-              Available for contracts and consulting
-            </span>
-          </div>
+      <section className="min-h-[80vh] md:min-h-screen flex items-center relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-0 md:pb-[10vh] w-full">
+          <HeroContent />
         </div>
-        <div
-          className="absolute bottom-8 left-4 md:left-8 hidden md:flex items-center gap-3"
-          aria-hidden="true"
-        >
-          <span className="text-xs font-mono text-muted">Scroll</span>
-          <span className="w-px h-8 bg-border" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.06] dark:opacity-[0.07] pointer-events-none select-none">
+          <pre className="font-mono text-xs text-foreground leading-relaxed">
+{`// reconciliation.match.ts
+async function matchTransaction(
+  bank: BankEntry,
+  ledger: LedgerEntry[]
+): Promise<MatchResult> {
+  const exact = ledger.find(
+    e => e.ref === bank.ref &&
+         e.amount === bank.amount
+  )
+  if (exact) return {
+    status: 'matched',
+    entry: exact
+  }
+  return fuzzyMatch(bank, ledger)
+}`}
+          </pre>
         </div>
       </section>
 
@@ -93,10 +79,18 @@ export default function HomePage() {
       <section className="border-y border-border">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border">
-            <MetricCard value="12" label="Products shipped to production" />
-            <MetricCard value="60%" label="Avg. API latency reduction" />
-            <MetricCard value="8 wks" label="Fastest 0→1 SaaS build" />
-            <MetricCard value="5 yrs" label="Full-stack + product ownership" />
+            <FadeIn delay={0}>
+              <MetricCard value="12" label="Products shipped to production" />
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <MetricCard value="60%" label="Avg. API latency reduction" />
+            </FadeIn>
+            <FadeIn delay={0.16}>
+              <MetricCard value="8 wks" label="Fastest 0→1 SaaS build" />
+            </FadeIn>
+            <FadeIn delay={0.24}>
+              <MetricCard value="5 yrs" label="Full-stack + product ownership" />
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -112,11 +106,13 @@ export default function HomePage() {
           />
           {featured.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-8 md:gap-y-14">
-              <div className="md:col-span-2">
+              <FadeIn className="md:col-span-2">
                 <CaseStudyCard project={featured[0]} featured />
-              </div>
-              {featured.slice(1).map((project) => (
-                <CaseStudyCard key={project.id} project={project} />
+              </FadeIn>
+              {featured.slice(1).map((project, i) => (
+                <FadeIn key={project.id} delay={(i + 1) * 0.12}>
+                  <CaseStudyCard project={project} />
+                </FadeIn>
               ))}
             </div>
           )}
@@ -128,12 +124,12 @@ export default function HomePage() {
       <section className="py-16 md:py-24 lg:py-32 bg-surface border-y border-border">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="md:grid md:grid-cols-2 md:gap-16 md:items-center">
-            <div className="bg-neutral-200 dark:bg-neutral-800 aspect-video rounded-lg flex items-center justify-center mb-8 md:mb-0 border border-border">
+            <FadeIn className="bg-neutral-200 dark:bg-neutral-800 aspect-video rounded-lg flex items-center justify-center mb-8 md:mb-0 border border-border">
               <span className="text-xs font-mono text-muted">
                 fig. 01 — matching pipeline
               </span>
-            </div>
-            <div>
+            </FadeIn>
+            <FadeIn delay={0.15}>
               <SectionHeading
                 index="02"
                 label="Under the hood"
@@ -150,7 +146,7 @@ export default function HomePage() {
                 review queue rather than failing silently — the finance team
                 resolves roughly 80 per month, down from thousands.
               </p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -159,11 +155,11 @@ export default function HomePage() {
       {testimonials.length > 0 && (
         <section className="py-16 md:py-24 lg:py-32">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <div className="max-w-2xl">
+            <FadeIn className="max-w-2xl">
               {testimonials.map((t) => (
                 <TestimonialBlock key={t.id} testimonial={t} />
               ))}
-            </div>
+            </FadeIn>
           </div>
         </section>
       )}
@@ -172,7 +168,7 @@ export default function HomePage() {
       <section id="contact" className="py-16 md:py-24 lg:py-32 bg-surface border-t border-border">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="md:grid md:grid-cols-2 md:gap-16">
-            <div className="mb-10 md:mb-0">
+            <FadeIn className="mb-10 md:mb-0">
               <SectionHeading
                 index="03"
                 label="Get in touch"
@@ -210,8 +206,10 @@ export default function HomePage() {
                   Email
                 </a>
               </div>
-            </div>
-            <ContactForm />
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <ContactForm />
+            </FadeIn>
           </div>
         </div>
       </section>

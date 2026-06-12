@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ProjectCard } from './ProjectCard'
+import { FadeIn } from './FadeIn'
 import type { DummyProject, ProjectType } from '@/src/lib/dummy-data'
 
 type Filter = 'all' | ProjectType | 'case-study'
@@ -43,7 +44,9 @@ export function ProjectGrid({ projects }: { projects: DummyProject[] }) {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 px-4 md:px-8 pb-16">
         {filtered.map((p) => (
-          <ProjectCard key={p.id} project={p} />
+          <FadeIn key={p.id}>
+            <ProjectCard project={p} />
+          </FadeIn>
         ))}
       </div>
     </>

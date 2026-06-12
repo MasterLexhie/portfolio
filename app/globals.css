@@ -6,16 +6,22 @@
   --background: #fafaf9;
   --foreground: #1c1917;
   --surface: #f5f5f4;
-  --accent: #1a2e1a;
+  /* Light mode accent — near-black button, warm white text */
+  --accent: #1c1917;
+  --accent-hover: #2c2a27;
+  --accent-foreground: #f5f0e8;
   --muted: #78716c;
   --border: #e7e5e4;
 }
 
 .dark {
   --background: #0c0c0b;
-  --foreground: #e7e5e4;
+  --foreground: #f5f0e8;
   --surface: #161614;
-  --accent: #4a8f5a;
+  /* Dark mode accent — warm cream button, near-black text */
+  --accent: #f5f0e8;
+  --accent-hover: #ede8dc;
+  --accent-foreground: #0c0c0b;
   --muted: #a8a29e;
   --border: #2a2a28;
 }
@@ -25,6 +31,8 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
@@ -45,7 +53,7 @@ h1, h2, h3 {
 
 ::selection {
   background: var(--accent);
-  color: var(--background);
+  color: var(--accent-foreground);
 }
 
 /* The one permitted animation: a gentle fade-in, 400ms, opacity only */

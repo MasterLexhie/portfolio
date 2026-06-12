@@ -80,7 +80,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="w-full bg-accent text-white px-6 py-3 rounded-lg text-sm hover:bg-accent/90 transition-colors min-h-[44px] disabled:opacity-60"
+        className="w-full md:w-auto md:self-start bg-accent text-accent-foreground px-8 py-3 rounded-lg text-sm hover:bg-accent-hover transition-colors min-h-[44px] disabled:opacity-60"
       >
         {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Message sent' : 'Book 20 minutes'}
       </button>

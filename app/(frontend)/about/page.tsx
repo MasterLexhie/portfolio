@@ -68,7 +68,11 @@ export default function AboutPage() {
           {/* Left column — bio */}
           <div className="mb-12 md:mb-0">
             {/* TODO: replace with real avatar */}
-            <div className="w-[72px] h-[72px] rounded-full bg-surface mx-auto md:mx-0 mb-4" />
+            <div className="w-20 h-20 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mx-auto md:mx-0 mb-4">
+              <span className="text-xs text-neutral-400 dark:text-neutral-500 font-mono tracking-wide">
+                photo
+              </span>
+            </div>
             <h1 className="text-2xl md:text-3xl tracking-tight text-center md:text-left">
               Precious Kanu
             </h1>
@@ -208,7 +212,7 @@ export default function AboutPage() {
           </h2>
           <Link
             href="/#contact"
-            className="inline-flex items-center justify-center w-full md:w-auto bg-accent text-white px-8 py-3 rounded-lg text-sm hover:bg-accent/90 transition-colors min-h-[44px]"
+            className="inline-flex items-center justify-center w-full md:w-auto bg-accent text-accent-foreground px-8 py-3 rounded-lg text-sm hover:bg-accent-hover transition-colors min-h-[44px]"
           >
             Book 20 minutes &rarr;
           </Link>

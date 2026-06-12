@@ -17,14 +17,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const hasCaseStudy = !!(project.problem && project.solution && project.result)
 
   return (
-    <Link href={`/work/${project.slug}`} className="group block">
-      <div className="relative overflow-hidden rounded-lg bg-surface">
+    <Link href={`/work/${project.slug}`} className="group block cursor-pointer">
+      <div className="relative overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-200 group-hover:border-neutral-300 dark:group-hover:border-neutral-700">
         <div className="relative w-full aspect-[4/3]">
           <Image
             src={project.cover_image.url}
             alt={project.cover_image.alt}
             fill
-            className="object-cover group-hover:opacity-90 transition-opacity"
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.015]"
             sizes="(max-width: 768px) 50vw, 33vw"
           />
         </div>
