@@ -50,7 +50,7 @@ export default function HomePage() {
 
       {/* Section 1 — Hero */}
       <section className="min-h-[80vh] md:min-h-screen flex items-center relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-0 md:pb-[10vh] w-full">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-0 md:pb-[15vh] w-full">
           <HeroContent />
         </div>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.16] dark:opacity-[0.10] pointer-events-none select-none">
