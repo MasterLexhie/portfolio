@@ -53,7 +53,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-0 md:pb-[10vh] w-full">
           <HeroContent />
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.16] dark:opacity-[0.07] pointer-events-none select-none">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.16] dark:opacity-[0.10] pointer-events-none select-none">
           <pre className="font-mono text-xs text-foreground leading-relaxed">
 {`// reconciliation.match.ts
 async function matchTransaction(
