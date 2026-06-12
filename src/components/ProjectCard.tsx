@@ -43,9 +43,23 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </span>
           )}
         </div>
-        <h3 className="font-serif text-base md:text-lg tracking-tight mt-3 leading-snug group-hover:underline underline-offset-4 decoration-1">
-          {project.title}
-        </h3>
+        <div className="flex items-start justify-between gap-2 mt-3">
+          <h3 className="font-serif text-base md:text-lg tracking-tight leading-snug group-hover:underline underline-offset-4 decoration-1">
+            {project.title}
+          </h3>
+          <span className="flex items-center gap-2 shrink-0 mt-0.5">
+            {project.github_url && (
+              <span className="text-[10px] font-mono text-muted">
+                GitHub {'↗'}
+              </span>
+            )}
+            {project.live_url && (
+              <span className="text-[10px] font-mono text-muted">
+                Live {'↗'}
+              </span>
+            )}
+          </span>
+        </div>
         <p className="text-sm text-muted mt-1.5 line-clamp-2 leading-relaxed">
           {project.summary}
         </p>
@@ -58,14 +72,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
               {t.item}
             </span>
           ))}
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          {project.github_url && (
-            <span className="text-[10px] font-mono text-muted">GitHub &nearr;</span>
-          )}
-          {project.live_url && (
-            <span className="text-[10px] font-mono text-muted">Live &nearr;</span>
-          )}
         </div>
       </div>
     </Link>
