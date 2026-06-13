@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { DummyProject } from '@/src/lib/dummy-data'
+import type { PortfolioProject } from '@/src/lib/data'
 
 type ProjectCardProps = {
-  project: DummyProject
+  project: PortfolioProject
 }
 
 const typeLabels: Record<string, string> = {
@@ -21,7 +21,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="relative overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-300 group-hover:border-neutral-400 dark:group-hover:border-neutral-600">
         <div className="relative w-full aspect-[4/3]">
           <Image
-            src={project.cover_image.url}
+            src={project.cover_image.sizes?.card?.url ?? project.cover_image.url}
             alt={project.cover_image.alt}
             fill
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
@@ -36,8 +36,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </span>
           {hasCaseStudy && (
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-              <span className="text-[10px] font-mono text-muted hidden md:inline">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500" aria-hidden="true" />
+              <span className="text-[10px] font-mono text-muted max-md:sr-only">
                 Case study
               </span>
             </span>

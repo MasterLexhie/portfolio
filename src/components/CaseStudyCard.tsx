@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { DummyProject } from '@/src/lib/dummy-data'
+import type { PortfolioProject } from '@/src/lib/data'
 
 type CaseStudyCardProps = {
-  project: DummyProject
+  project: PortfolioProject
   featured?: boolean
 }
 
@@ -22,7 +22,7 @@ export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
           className={`relative w-full ${featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}
         >
           <Image
-            src={project.cover_image.url}
+            src={project.cover_image.sizes?.card?.url ?? project.cover_image.url}
             alt={project.cover_image.alt}
             fill
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
@@ -63,7 +63,7 @@ export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
               &rarr;
             </span>
           </span>
-          <span className="text-xs text-foreground/40 font-mono">
+          <span className="text-xs text-muted font-mono">
             {project.role}
           </span>
         </div>

@@ -2,18 +2,33 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "^3.85.1",
+    "@payloadcms/email-resend": "^3.85.1",
+    "@payloadcms/next": "^3.85.1",
+    "@payloadcms/richtext-lexical": "^3.85.1",
     "@tailwindcss/typography": "^0.5.20",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "framer-motion": "^12.40.0",
+    "graphql": "^16.14.2",
     "next": "16.2.9",
+    "payload": "^3.85.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "resend": "^6.12.4",
+    "sharp": "^0.34.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

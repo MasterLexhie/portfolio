@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { MetricCard } from '@/src/components/MetricCard'
 import { CaseStudyCard } from '@/src/components/CaseStudyCard'
 import { TestimonialBlock } from '@/src/components/TestimonialBlock'
@@ -6,8 +7,7 @@ import { ContactForm } from '@/src/components/ContactForm'
 import { SectionHeading } from '@/src/components/SectionHeading'
 import { HeroContent } from '@/src/components/HeroContent'
 import { FadeIn } from '@/src/components/FadeIn'
-// TODO: replace with Payload query in Phase 2
-import { getFeaturedProjects, getHomepageTestimonials } from '@/src/lib/dummy-data'
+import { getFeaturedProjects, getHomepageTestimonials } from '@/src/lib/data'
 
 export const metadata: Metadata = {
   title: 'Precious Kanu — Full-Stack Engineer & Product Owner',
@@ -24,10 +24,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default function HomePage() {
-  // TODO: replace with Payload query in Phase 2
-  const featured = getFeaturedProjects()
-  const testimonials = getHomepageTestimonials()
+export default async function HomePage() {
+  const featured = await getFeaturedProjects()
+  const testimonials = await getHomepageTestimonials()
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -53,7 +52,10 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-0 md:pb-[15vh] w-full">
           <HeroContent />
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.16] dark:opacity-[0.10] pointer-events-none select-none">
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.16] dark:opacity-[0.10] pointer-events-none select-none"
+        >
           <pre className="font-mono text-xs text-foreground leading-relaxed">
 {`// reconciliation.match.ts
 async function matchTransaction(
@@ -104,7 +106,7 @@ async function matchTransaction(
             title="Projects I led from discovery to production"
             className="mb-10 md:mb-14"
           />
-          {featured.length > 0 && (
+          {featured.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-8 md:gap-y-14">
               <FadeIn className="md:col-span-2">
                 <CaseStudyCard project={featured[0]} featured />
@@ -115,6 +117,19 @@ async function matchTransaction(
                 </FadeIn>
               ))}
             </div>
+          ) : (
+            <FadeIn className="border border-border rounded-lg p-8 md:p-12">
+              <p className="text-base text-muted leading-relaxed max-w-md">
+                Case studies are being written up. If you want to hear about
+                recent work before they&rsquo;re published, get in touch.
+              </p>
+              <Link
+                href="/#contact"
+                className="inline-flex items-center min-h-[44px] mt-4 text-sm text-foreground/70 hover:text-foreground transition-colors"
+              >
+                Get in touch &rarr;
+              </Link>
+            </FadeIn>
           )}
         </div>
       </section>

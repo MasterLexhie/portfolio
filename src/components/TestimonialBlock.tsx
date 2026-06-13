@@ -1,7 +1,7 @@
-import type { DummyTestimonial } from '@/src/lib/dummy-data'
+import type { PortfolioTestimonial } from '@/src/lib/data'
 
 type TestimonialBlockProps = {
-  testimonial: DummyTestimonial
+  testimonial: PortfolioTestimonial
 }
 
 export function TestimonialBlock({ testimonial }: TestimonialBlockProps) {

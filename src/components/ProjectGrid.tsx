@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { ProjectCard } from './ProjectCard'
 import { FadeIn } from './FadeIn'
-import type { DummyProject, ProjectType } from '@/src/lib/dummy-data'
+import type { PortfolioProject, ProjectType } from '@/src/lib/data'
 
 type Filter = 'all' | ProjectType | 'case-study'
 
@@ -16,7 +16,7 @@ const filters: { value: Filter; label: string }[] = [
   { value: 'case-study', label: 'Case studies only' },
 ]
 
-export function ProjectGrid({ projects }: { projects: DummyProject[] }) {
+export function ProjectGrid({ projects }: { projects: PortfolioProject[] }) {
   const [active, setActive] = useState<Filter>('all')
 
   const filtered = projects.filter((p) => {
@@ -32,6 +32,7 @@ export function ProjectGrid({ projects }: { projects: DummyProject[] }) {
           <button
             key={f.value}
             onClick={() => setActive(f.value)}
+            aria-pressed={active === f.value}
             className={`whitespace-nowrap text-sm px-4 py-2 rounded-lg min-h-[44px] transition-colors ${
               active === f.value
                 ? 'bg-foreground text-background'
@@ -42,13 +43,19 @@ export function ProjectGrid({ projects }: { projects: DummyProject[] }) {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 px-4 md:px-8 pb-16">
-        {filtered.map((p) => (
-          <FadeIn key={p.id}>
-            <ProjectCard project={p} />
-          </FadeIn>
-        ))}
-      </div>
+      {filtered.length > 0 ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 px-4 md:px-8 pb-16">
+          {filtered.map((p) => (
+            <FadeIn key={p.id}>
+              <ProjectCard project={p} />
+            </FadeIn>
+          ))}
+        </div>
+      ) : (
+        <p role="status" className="text-sm text-muted px-4 md:px-8 pb-16">
+          No projects in this category yet.
+        </p>
+      )}
     </>
   )
 }

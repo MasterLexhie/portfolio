@@ -133,9 +133,9 @@ export default function AboutPage() {
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-mono text-muted">01</span>
-                <span className="text-xs tracking-widest uppercase text-muted">
+                <h2 className="font-sans text-xs tracking-widest uppercase text-muted">
                   Skills
-                </span>
+                </h2>
                 <span className="flex-1 h-px bg-border" aria-hidden="true" />
               </div>
               {Object.entries(skills).map(([category, items]) => (
@@ -159,9 +159,9 @@ export default function AboutPage() {
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-mono text-muted">02</span>
-                <span className="text-xs tracking-widest uppercase text-muted">
+                <h2 className="font-sans text-xs tracking-widest uppercase text-muted">
                   Experience
-                </span>
+                </h2>
                 <span className="flex-1 h-px bg-border" aria-hidden="true" />
               </div>
               <div className="space-y-0">
@@ -186,9 +186,9 @@ export default function AboutPage() {
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-mono text-muted">03</span>
-                <span className="text-xs tracking-widest uppercase text-muted">
+                <h2 className="font-sans text-xs tracking-widest uppercase text-muted">
                   Currently
-                </span>
+                </h2>
                 <span className="flex-1 h-px bg-border" aria-hidden="true" />
               </div>
               <div className="grid grid-cols-2 gap-3">

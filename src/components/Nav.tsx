@@ -2,15 +2,51 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { ThemeToggle } from './ThemeToggle'
 
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
+
+  const wasOpen = useRef(false)
+  useEffect(() => {
+    if (menuOpen) {
+      closeButtonRef.current?.focus()
+    } else if (wasOpen.current) {
+      // Only restore focus when the menu was actually open (not on mount)
+      hamburgerRef.current?.focus()
+    }
+    wasOpen.current = menuOpen
+  }, [menuOpen])
+
+  function handleOverlayKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (e.key === 'Escape') {
+      setMenuOpen(false)
+      return
+    }
+    // Trap Tab within the overlay while it is open
+    if (e.key !== 'Tab' || !overlayRef.current) return
+    const focusables = overlayRef.current.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled])',
+    )
+    if (focusables.length === 0) return
+    const first = focusables[0]
+    const last = focusables[focusables.length - 1]
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault()
+      last.focus()
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault()
+      first.focus()
+    }
+  }
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 border-b border-border">
@@ -56,9 +92,12 @@ export function Nav() {
         <div className="flex items-center gap-1 md:hidden">
           <ThemeToggle />
           <button
+            ref={hamburgerRef}
             onClick={() => setMenuOpen(true)}
             className="min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Open menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M4 7h16M4 12h16M4 17h16" />
@@ -69,7 +108,15 @@ export function Nav() {
 
       {/* Mobile overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-background flex flex-col md:hidden">
+        <div
+          ref={overlayRef}
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+          onKeyDown={handleOverlayKeyDown}
+          className="fixed inset-0 z-50 bg-background flex flex-col md:hidden"
+        >
           <div className="flex items-center justify-between px-4 h-16 border-b border-border">
             <Link
               href="/"
@@ -79,6 +126,7 @@ export function Nav() {
               Precious Kanu
             </Link>
             <button
+              ref={closeButtonRef}
               onClick={() => setMenuOpen(false)}
               className="min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Close menu"

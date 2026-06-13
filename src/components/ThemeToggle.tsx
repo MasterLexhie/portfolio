@@ -1,25 +1,27 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
+
+function subscribe(callback: () => void) {
+  const observer = new MutationObserver(callback)
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
+  })
+  return () => observer.disconnect()
+}
 
 export function ThemeToggle() {
-  const [dark, setDark] = useState(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    setDark(document.documentElement.classList.contains('dark'))
-  }, [])
+  const dark = useSyncExternalStore(
+    subscribe,
+    () => document.documentElement.classList.contains('dark'),
+    () => false,
+  )
 
   function toggle() {
     const next = !dark
-    setDark(next)
     document.documentElement.classList.toggle('dark', next)
     localStorage.setItem('theme', next ? 'dark' : 'light')
-  }
-
-  if (!mounted) {
-    return <div className="w-9 h-9" />
   }
 
   return (

@@ -5,16 +5,15 @@ import { notFound } from 'next/navigation'
 import { RichText } from '@/src/components/RichText'
 import { TestimonialBlock } from '@/src/components/TestimonialBlock'
 import { FadeIn } from '@/src/components/FadeIn'
-// TODO: replace with Payload query in Phase 2
 import {
-  dummyProjects,
   getProjectBySlug,
+  getProjectSlugs,
   getTestimonialForProject,
-} from '@/src/lib/dummy-data'
+} from '@/src/lib/data'
 
 export async function generateStaticParams() {
-  // TODO: replace with Payload query in Phase 2
-  return dummyProjects.map((p) => ({ slug: p.slug }))
+  const slugs = await getProjectSlugs()
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({
@@ -23,7 +22,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const project = await getProjectBySlug(slug)
   if (!project) return {}
   return {
     title: `${project.title} — Precious Kanu`,
@@ -31,7 +30,13 @@ export async function generateMetadata({
     openGraph: {
       title: project.title,
       description: project.summary,
-      images: [{ url: project.cover_image.url }],
+      images: [
+        {
+          url: project.cover_image.sizes?.og?.url ?? project.cover_image.url,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_SERVER_URL}/work/${slug}`,
@@ -50,9 +55,9 @@ function SectionLabel({ num, children }: { num: string; children: React.ReactNod
   return (
     <div className="flex items-center gap-3 mb-4">
       <span className="text-xs font-mono text-muted">{num}</span>
-      <span className="text-xs tracking-widest uppercase text-muted">
+      <h2 className="font-sans text-xs tracking-widest uppercase text-muted">
         {children}
-      </span>
+      </h2>
       <span className="flex-1 h-px bg-border" aria-hidden="true" />
     </div>
   )
@@ -64,11 +69,10 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  // TODO: replace with Payload query in Phase 2
-  const project = getProjectBySlug(slug)
+  const project = await getProjectBySlug(slug)
   if (!project) notFound()
 
-  const testimonial = getTestimonialForProject(project.id)
+  const testimonial = await getTestimonialForProject(project.id)
 
   const sections = [
     { id: 'problem', label: 'Problem' },
@@ -88,7 +92,7 @@ export default async function CaseStudyPage({
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-sm text-foreground/50 hover:text-foreground transition-colors py-4 mb-2"
+            className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors py-4 mb-2"
           >
             <span aria-hidden="true">&larr;</span>
             All projects
