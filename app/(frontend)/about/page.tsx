@@ -4,11 +4,11 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About — Precious Kanu',
   description:
-    'Full-stack software engineer and product owner with 5 years of experience shipping products from idea to production.',
+    'Full-stack software engineer and product builder based in Nigeria. I build software from idea to production — with the engineering depth to build it right and the product thinking to build the right thing.',
   openGraph: {
     title: 'About — Precious Kanu',
     description:
-      'Full-stack software engineer and product owner with 5 years of experience.',
+      'Full-stack software engineer and product builder. Engineering execution meets product thinking — based in Nigeria, working remotely.',
     images: [{ url: '/og-default.jpg' }],
   },
   alternates: {
@@ -17,47 +17,85 @@ export const metadata: Metadata = {
 }
 
 const skills = {
-  Backend: [
-    'Node.js',
+  'Full-Stack': [
     'TypeScript',
-    'PostgreSQL',
-    'Redis',
-    'BullMQ',
-    'Prisma',
-    'REST',
-    'WebSocket',
-  ],
-  Frontend: [
-    'React',
+    'Node.js',
     'Next.js',
-    'Tailwind CSS',
-    'Radix UI',
-    'tRPC',
-    'Storybook',
+    'React',
+    'PostgreSQL',
+    'GraphQL',
+    'REST APIs',
   ],
-  'Product + process': [
-    'Discovery',
-    'Roadmapping',
-    'User interviews',
-    'Sprint planning',
-    'Technical writing',
+  'AI & Third-Party Integrations': [
+    'AI Integration',
+    'Prompt Engineering',
+    'AI-powered features',
+    'Multi-provider AI (OpenAI · Claude · Gemini)',
+    'Facebook Ads API',
+    'TikTok Ads API',
+    'Google Ads API',
+    'Shopify API',
+  ],
+  'Cloud & Deployment': [
+    'AWS S3',
+    'AWS Lambda',
+    'AWS AppSync',
+    'AWS Amplify',
+    'Azure App Service',
+    'Azure Static Web Apps',
+    'Azure Storage',
+    'Firebase',
+  ],
+  'Analytics & Monitoring': [
+    'Mixpanel',
+    'Google Analytics',
+    'PostHog',
+    'Sentry',
+  ],
+  'Product & Process': [
+    'Product Ownership',
+    'Requirements Gathering',
+    'Cross-functional Collaboration',
+    'Stakeholder Communication',
+    'Agile Product Development',
   ],
 }
 
-const timeline = [
-  // TODO: replace with real experience
-  { year: '2024', role: 'Contract Engineer', company: 'Multiple clients' },
-  { year: '2023', role: 'Full-Stack Engineer', company: 'Drivve Technologies' },
-  { year: '2022', role: 'Frontend Engineer', company: 'Tradestack' },
-  { year: '2021', role: 'Backend Engineer', company: 'Freelance' },
-  { year: '2020', role: 'Junior Developer', company: 'Agency work' },
+const experience = [
+  {
+    company: 'Athletiverse',
+    period: '2025 – present',
+    current: true,
+    roles: [{ title: 'Full-Stack Engineer', dates: '2025 – present' }],
+  },
+  {
+    company: 'Sirge Inc',
+    period: '2022 – 2025',
+    current: false,
+    roles: [{ title: 'Full-Stack Engineer', dates: 'Aug 2022 – Apr 2025' }],
+  },
+  {
+    company: 'Bimbi Philips LTD',
+    period: '2021 – 2022',
+    current: false,
+    roles: [
+      { title: 'Senior Product Owner', dates: 'Jul 2021 – Nov 2022' },
+      { title: 'Full-Stack Developer', dates: 'Feb 2021 – Jul 2021' },
+    ],
+  },
+  {
+    company: 'SB Telecoms & Devices',
+    period: '2018 – 2020',
+    current: false,
+    roles: [{ title: 'Frontend Developer', dates: 'Oct 2018 – Jun 2020' }],
+  },
 ]
 
 const currently = [
-  { label: 'Building', value: 'Contract + consulting practice' },
-  { label: 'Available for', value: 'Contracts, consulting, co-founder conversations' },
-  { label: 'Interested in', value: 'Fintech, developer tools, B2B SaaS' },
-  { label: 'Location', value: 'Lagos, Nigeria' },
+  { label: 'Building', value: 'Contract work + B2B SaaS product for Nigerian vendors' },
+  { label: 'Available for', value: 'Full-time roles, contracts, consulting, and founding engineer opportunities' },
+  { label: 'Interested in', value: 'SaaS, B2B tools, developer tools, African market products' },
+  { label: 'Location', value: 'Remote · Nigeria · UTC+1' },
 ]
 
 export default function AboutPage() {
@@ -77,33 +115,37 @@ export default function AboutPage() {
               Precious Kanu
             </h1>
             <p className="text-sm text-muted mt-1 text-center md:text-left">
-              Full-Stack Engineer &middot; Product Owner &middot; Lagos, Nigeria
+              Full-Stack Engineer &middot; Product Builder &middot; Remote &middot; Nigeria
             </p>
 
             <div className="mt-6 space-y-4 text-base text-muted leading-relaxed">
-              {/* TODO: replace with real bio */}
               <p>
-                I&rsquo;ve spent the last five years building software that ships and
-                decisions that hold up. Most of that time has been at the intersection
-                of engineering and product — writing the code, but also deciding what
-                gets built and why.
+                I&rsquo;m a full-stack software engineer with over seven years of
+                experience building SaaS products, API integrations, and AI-powered
+                features across the full stack. Most of that time has been at the
+                intersection of engineering and product — writing the code, but also
+                owning the decisions that shape what gets built and why.
               </p>
               <p>
-                My work tends toward systems that move money, manage inventory, or
-                coordinate real-time data. The common thread is complexity that needs to
-                be made simple for the people using it.
+                At Sirge I shipped everything from PostgreSQL performance optimisations
+                and serverless AWS infrastructure to AI-powered product features —
+                building AI integrations, prompt engineering pipelines, and
+                multi-provider AI tooling in production — while also owning product
+                delivery as a Senior Product Owner at Bimbi Philips. The common thread
+                across all of it is complexity that needs to be made simple for the
+                people using it.
               </p>
               <p>
                 I care about clean architecture, but I care more about outcomes. A system
                 that&rsquo;s elegant but ships late is worse than one that&rsquo;s pragmatic
-                and running in production.
+                and running in production. If that&rsquo;s how you think about building
+                — we&rsquo;ll work well together.
               </p>
             </div>
 
             <div className="flex items-center gap-3 mt-6 justify-center md:justify-start">
-              {/* TODO: replace with real URLs */}
               <a
-                href="https://github.com/placeholder"
+                href="https://github.com/MasterLexhie"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-border rounded-lg px-4 py-2.5 text-sm text-muted hover:text-foreground hover:border-foreground transition-colors min-h-[44px] flex items-center"
@@ -111,7 +153,7 @@ export default function AboutPage() {
                 GitHub
               </a>
               <a
-                href="https://linkedin.com/in/placeholder"
+                href="https://www.linkedin.com/in/precious-alexandra-kanu/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-border rounded-lg px-4 py-2.5 text-sm text-muted hover:text-foreground hover:border-foreground transition-colors min-h-[44px] flex items-center"
@@ -164,18 +206,26 @@ export default function AboutPage() {
                 </h2>
                 <span className="flex-1 h-px bg-border" aria-hidden="true" />
               </div>
-              <div className="space-y-0">
-                {timeline.map((entry, i) => (
+              <div>
+                {experience.map((group, i) => (
                   <div
-                    key={i}
-                    className="grid grid-cols-[72px_1fr] py-3 border-b border-border last:border-0"
+                    key={group.company}
+                    className={`py-3 ${i < experience.length - 1 ? 'border-b border-border' : ''}`}
                   >
-                    <span className="text-sm font-mono text-muted">
-                      {entry.year}
-                    </span>
-                    <div>
-                      <p className="text-sm font-medium">{entry.role}</p>
-                      <p className="text-xs text-muted">{entry.company}</p>
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      {group.current && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
+                      )}
+                      <p className="text-sm md:text-[14px] font-medium">{group.company}</p>
+                    </div>
+                    <p className="text-[11px] font-mono text-muted/60 mb-2">{group.period}</p>
+                    <div className="pl-2.5 border-l-[1.5px] border-border flex flex-col gap-1.5">
+                      {group.roles.map((role) => (
+                        <div key={role.title} className="flex items-start justify-between gap-2">
+                          <span className="text-[13px] text-muted">{role.title}</span>
+                          <span className="text-[11px] font-mono text-muted/60 whitespace-nowrap">{role.dates}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -208,7 +258,7 @@ export default function AboutPage() {
         {/* Bottom CTA */}
         <div className="mt-16 pt-12 border-t border-border text-center md:text-left">
           <h2 className="text-2xl md:text-3xl tracking-tight mb-6">
-            Let&rsquo;s build something that <em className="italic">matters</em>.
+            Building something? Let&rsquo;s <em className="italic">talk</em>.
           </h2>
           <Link
             href="/#contact"

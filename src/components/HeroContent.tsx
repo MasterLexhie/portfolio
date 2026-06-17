@@ -25,7 +25,7 @@ export function HeroContent() {
       <motion.div variants={item(0)} className="flex items-center gap-3 mb-6">
         <span className="w-8 h-px bg-foreground/40" aria-hidden="true" />
         <p className="text-xs tracking-widest uppercase text-muted">
-          Full-stack engineer &middot; Product owner
+          Full-stack engineer &middot; Product builder
         </p>
       </motion.div>
       <motion.h1
@@ -53,7 +53,7 @@ export function HeroContent() {
       <motion.div variants={item(0.45)} className="flex items-center gap-2 mt-5">
         <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
         <span className="text-xs text-muted">
-          Available for contracts and consulting
+          Open to full-time roles, contracts, and co-builds
         </span>
       </motion.div>
     </motion.div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { MetricCard } from '@/src/components/MetricCard'
 import { CaseStudyCard } from '@/src/components/CaseStudyCard'
@@ -10,11 +11,11 @@ import { FadeIn } from '@/src/components/FadeIn'
 import { getFeaturedProjects, getHomepageTestimonials } from '@/src/lib/data'
 
 export const metadata: Metadata = {
-  title: 'Precious Kanu — Full-Stack Engineer & Product Owner',
+  title: 'Precious Kanu — Software Engineer & Product Builder',
   description:
-    'I build products that ship — from idea to production. Full-stack software engineer with product ownership experience.',
+    'I build products that ship — from idea to production. Full-stack software engineer with product building experience.',
   openGraph: {
-    title: 'Precious Kanu — Full-Stack Engineer & Product Owner',
+    title: 'Precious Kanu — Software Engineer & Product Builder',
     description:
       'I build products that ship — from idea to production.',
     images: [{ url: '/og-default.jpg' }],
@@ -33,10 +34,10 @@ export default async function HomePage() {
     '@type': 'Person',
     name: 'Precious Kanu',
     url: process.env.NEXT_PUBLIC_SERVER_URL,
-    jobTitle: 'Full-Stack Software Engineer',
+    jobTitle: 'Software Engineer & Product Builder',
     sameAs: [
-      'https://github.com/placeholder', // TODO: replace
-      'https://linkedin.com/in/placeholder', // TODO: replace
+      'https://github.com/MasterLexhie',
+      'https://www.linkedin.com/in/precious-alexandra-kanu/',
     ],
   }
 
@@ -77,21 +78,20 @@ async function matchTransaction(
       </section>
 
       {/* Section 2 — Proof numbers */}
-      {/* TODO: replace with real data */}
       <section className="border-y border-border">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border">
             <FadeIn delay={0}>
-              <MetricCard value="12" label="Products shipped to production" />
+              <MetricCard value="8" label="Products shipped to production" />
             </FadeIn>
             <FadeIn delay={0.08}>
-              <MetricCard value="60%" label="Avg. API latency reduction" />
+              <MetricCard value="97%" label="API response time reduction" />
             </FadeIn>
             <FadeIn delay={0.16}>
               <MetricCard value="8 wks" label="Fastest 0→1 SaaS build" />
             </FadeIn>
             <FadeIn delay={0.24}>
-              <MetricCard value="5 yrs" label="Full-stack + product ownership" />
+              <MetricCard value="7+ yrs" label="Full-stack + product ownership" />
             </FadeIn>
           </div>
         </div>
@@ -135,31 +135,43 @@ async function matchTransaction(
       </section>
 
       {/* Section 4 — Technical depth signal */}
-      {/* TODO: owner replaces diagram image and copy */}
       <section className="py-16 md:py-24 lg:py-32 bg-surface border-y border-border">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="md:grid md:grid-cols-2 md:gap-16 md:items-center">
-            <FadeIn className="bg-neutral-200 dark:bg-neutral-800 aspect-video rounded-lg flex items-center justify-center mb-8 md:mb-0 border border-border">
-              <span className="text-xs font-mono text-muted">
-                fig. 01 — matching pipeline
-              </span>
+            <FadeIn className="relative aspect-video rounded-lg overflow-hidden mb-8 md:mb-0 border border-border">
+              <Image
+                src="/api-optimisation.webp"
+                alt="Query optimisation — from 10 seconds to 300ms"
+                fill
+                className="object-fill"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </FadeIn>
             <FadeIn delay={0.15}>
               <SectionHeading
                 index="02"
                 label="Under the hood"
-                title="The reconciliation engine's matching pipeline"
+                title="From 10 seconds to 300ms — a query optimisation story"
                 className="mb-5"
               />
+              <p className="text-base text-muted leading-relaxed mb-4">
+                Two enterprise clients were each processing 2 million
+                transactions daily — all landing in a single shared table. The
+                query had a business_id filter but was pulling all columns,
+                running on poorly defined indexes, with no table partitioning.
+                Pulling 30 days of data was taking 10 seconds. It wasn&rsquo;t
+                visible until a whale client hit production scale.
+              </p>
+              <p className="text-base text-muted leading-relaxed mb-4">
+                The fix was precise: narrow the query to only the columns
+                needed, introduce compound indexes matched to the actual query
+                pattern, and partition the table per business. No infrastructure
+                changes. No new services. The same query, now hitting the right
+                partition with the right indexes, responds in 300ms.
+              </p>
               <p className="text-base text-muted leading-relaxed">
-                The system processes ₦2B in monthly transactions across four
-                banks, each with its own CSV format and reference scheme. The
-                normalisation layer maps all formats into a canonical shape
-                before the matching engine runs two passes: exact match on
-                cleaned references, then fuzzy match on amount, date, and
-                partial reference. Unmatched transactions surface in a manual
-                review queue rather than failing silently — the finance team
-                resolves roughly 80 per month, down from thousands.
+                Left unsolved, every other client on the platform would have
+                felt it. That&rsquo;s the kind of problem worth getting right.
               </p>
             </FadeIn>
           </div>
@@ -191,15 +203,13 @@ async function matchTransaction(
                 className="mb-5"
               />
               <p className="text-base text-muted leading-relaxed mb-8">
-                I take on contract work, consulting engagements, and select
-                co-founder conversations. If you have a project that needs an
-                engineer who thinks about the product — not just the code —
-                reach out.
+                I&rsquo;m open to full-time roles, contract work, and consulting
+                engagements. If you have a project that needs an engineer who
+                thinks about the product — not just the code — let&rsquo;s talk.
               </p>
               <div className="flex items-center gap-3">
-                {/* TODO: replace with real URLs */}
                 <a
-                  href="https://github.com/placeholder"
+                  href="https://github.com/MasterLexhie"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border border-border rounded-lg px-4 py-2.5 text-sm text-muted hover:text-foreground hover:border-foreground transition-colors min-h-[44px] flex items-center"
@@ -207,7 +217,7 @@ async function matchTransaction(
                   GitHub
                 </a>
                 <a
-                  href="https://linkedin.com/in/placeholder"
+                  href="https://www.linkedin.com/in/precious-alexandra-kanu/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border border-border rounded-lg px-4 py-2.5 text-sm text-muted hover:text-foreground hover:border-foreground transition-colors min-h-[44px] flex items-center"
