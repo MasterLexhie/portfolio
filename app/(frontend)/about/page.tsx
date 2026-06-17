@@ -94,7 +94,7 @@ const experience = [
 const currently = [
   { label: 'Building', value: 'Contract work + B2B SaaS product for Nigerian vendors' },
   { label: 'Available for', value: 'Full-time roles, contracts, consulting, and founding engineer opportunities' },
-  { label: 'Interested in', value: 'SaaS, B2B tools, developer tools, African market products' },
+  { label: 'Interested in', value: 'SaaS, B2B tools, developer tools, AI-powered products' },
   { label: 'Location', value: 'Remote · Nigeria · UTC+1' },
 ]
 
