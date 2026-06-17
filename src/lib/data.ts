@@ -28,9 +28,9 @@ export type PortfolioProject = {
   role: string
   outcome_metric: string
   type: ProjectType
-  problem: RichTextContent
-  solution: RichTextContent
-  result: RichTextContent
+  problem?: RichTextContent
+  solution?: RichTextContent
+  result?: RichTextContent
   discovery?: RichTextContent
   tech_stack: { item: string }[]
   architecture_image?: PortfolioImage
@@ -76,9 +76,9 @@ function toProject(doc: Project): PortfolioProject {
     role: doc.role,
     outcome_metric: doc.outcome_metric,
     type: doc.type ?? 'full-stack',
-    problem: doc.problem,
-    solution: doc.solution,
-    result: doc.result,
+    problem: doc.problem ?? undefined,
+    solution: doc.solution ?? undefined,
+    result: doc.result ?? undefined,
     discovery: doc.discovery ?? undefined,
     tech_stack: (doc.tech_stack ?? []).flatMap((t) => (t.item ? [{ item: t.item }] : [])),
     architecture_image: toImage(doc.architecture_image),

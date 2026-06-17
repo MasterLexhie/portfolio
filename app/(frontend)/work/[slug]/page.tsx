@@ -75,10 +75,10 @@ export default async function CaseStudyPage({
   const testimonial = await getTestimonialForProject(project.id)
 
   const sections = [
-    { id: 'problem', label: 'Problem' },
+    ...(project.problem ? [{ id: 'problem', label: 'Problem' }] : []),
     ...(project.discovery ? [{ id: 'discovery', label: 'Discovery' }] : []),
-    { id: 'solution', label: 'Decision' },
-    { id: 'results', label: 'Results' },
+    ...(project.solution ? [{ id: 'solution', label: 'Decision' }] : []),
+    ...(project.result ? [{ id: 'results', label: 'Results' }] : []),
     ...(testimonial ? [{ id: 'testimonial', label: 'Testimonial' }] : []),
     { id: 'stack', label: 'Tech stack' },
   ]
@@ -159,12 +159,14 @@ export default async function CaseStudyPage({
               </div>
 
               {/* Problem */}
-              <section id="problem" className="mb-14">
-                <FadeIn>
-                  <SectionLabel num={num('problem')}>The problem</SectionLabel>
-                  <RichText content={project.problem} />
-                </FadeIn>
-              </section>
+              {project.problem && (
+                <section id="problem" className="mb-14">
+                  <FadeIn>
+                    <SectionLabel num={num('problem')}>The problem</SectionLabel>
+                    <RichText content={project.problem} />
+                  </FadeIn>
+                </section>
+              )}
 
               {/* Discovery */}
               {project.discovery && (
@@ -177,12 +179,14 @@ export default async function CaseStudyPage({
               )}
 
               {/* Solution / Decision */}
-              <section id="solution" className="mb-14">
-                <FadeIn>
-                  <SectionLabel num={num('solution')}>The decision</SectionLabel>
-                  <RichText content={project.solution} />
-                </FadeIn>
-              </section>
+              {project.solution && (
+                <section id="solution" className="mb-14">
+                  <FadeIn>
+                    <SectionLabel num={num('solution')}>The decision</SectionLabel>
+                    <RichText content={project.solution} />
+                  </FadeIn>
+                </section>
+              )}
 
               {/* Architecture image */}
               {project.architecture_image && (
@@ -218,12 +222,14 @@ export default async function CaseStudyPage({
               )}
 
               {/* Results */}
-              <section id="results" className="mb-14">
-                <FadeIn>
-                  <SectionLabel num={num('results')}>Results</SectionLabel>
-                  <RichText content={project.result} />
-                </FadeIn>
-              </section>
+              {project.result && (
+                <section id="results" className="mb-14">
+                  <FadeIn>
+                    <SectionLabel num={num('results')}>Results</SectionLabel>
+                    <RichText content={project.result} />
+                  </FadeIn>
+                </section>
+              )}
 
               {/* Testimonial */}
               {testimonial && (
