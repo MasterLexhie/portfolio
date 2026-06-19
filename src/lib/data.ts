@@ -2,7 +2,7 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import type { Media, Project, Testimonial } from '@/src/payload-types'
 
-export type ProjectType = 'full-stack' | 'backend' | 'frontend' | 'web3'
+export type ProjectType = 'full-stack' | 'backend' | 'frontend'
 
 export type PortfolioImage = {
   url: string

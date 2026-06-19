@@ -48,7 +48,6 @@ const typeLabels: Record<string, string> = {
   'full-stack': 'Full-stack',
   backend: 'Backend',
   frontend: 'Frontend',
-  web3: 'Web3',
 }
 
 function SectionLabel({ num, children }: { num: string; children: React.ReactNode }) {

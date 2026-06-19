@@ -11,9 +11,9 @@ export const Projects: CollectionConfig = {
     { name: 'slug',           type: 'text',     required: true, unique: true },
     { name: 'summary',        type: 'textarea', required: true },
     { name: 'featured',       type: 'checkbox', required: true, defaultValue: false },
-    { name: 'cover_image',    type: 'upload',   relationTo: 'media', required: true },
+    { name: 'cover_image',    type: 'upload',   relationTo: 'media' },
     { name: 'role',           type: 'text',     required: true },
-    { name: 'outcome_metric', type: 'text',     required: true },
+    { name: 'outcome_metric', type: 'text' },
     { name: 'problem',        type: 'richText' },
     { name: 'solution',       type: 'richText' },
     { name: 'result',         type: 'richText' },
@@ -27,7 +27,7 @@ export const Projects: CollectionConfig = {
     {
       name: 'type',
       type: 'select',
-      options: ['full-stack', 'backend', 'frontend', 'web3'],
+      options: ['full-stack', 'backend', 'frontend'],
     },
   ],
 }

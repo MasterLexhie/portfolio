@@ -131,10 +131,10 @@ export interface Project {
   slug: string;
   summary: string;
   featured: boolean;
-  cover_image: number | Media;
+  cover_image?: (number | null) | Media;
   role: string;
-  outcome_metric: string;
-  problem: {
+  outcome_metric?: string | null;
+  problem?: {
     root: {
       type: string;
       children: {
@@ -148,8 +148,8 @@ export interface Project {
       version: number;
     };
     [k: string]: unknown;
-  };
-  solution: {
+  } | null;
+  solution?: {
     root: {
       type: string;
       children: {
@@ -163,8 +163,8 @@ export interface Project {
       version: number;
     };
     [k: string]: unknown;
-  };
-  result: {
+  } | null;
+  result?: {
     root: {
       type: string;
       children: {
@@ -178,7 +178,7 @@ export interface Project {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   discovery?: {
     root: {
       type: string;
@@ -210,7 +210,7 @@ export interface Project {
   live_url?: string | null;
   github_url?: string | null;
   published_date?: string | null;
-  type?: ('full-stack' | 'backend' | 'frontend' | 'web3') | null;
+  type?: ('full-stack' | 'backend' | 'frontend') | null;
   updatedAt: string;
   createdAt: string;
 }

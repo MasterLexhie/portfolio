@@ -6,11 +6,11 @@ import { getAllProjects } from '@/src/lib/data'
 export const metadata: Metadata = {
   title: 'Work — Precious Kanu',
   description:
-    'Selected projects spanning full-stack applications, backend services, frontend interfaces, and Web3.',
+    'Selected projects spanning full-stack applications, backend services, and frontend interfaces.',
   openGraph: {
     title: 'Work — Precious Kanu',
     description:
-      'Selected projects spanning full-stack applications, backend services, frontend interfaces, and Web3.',
+      'Selected projects spanning full-stack applications, backend services, and frontend interfaces.',
     images: [{ url: '/og-default.jpg' }],
   },
   alternates: {

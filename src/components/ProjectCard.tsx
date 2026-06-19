@@ -10,14 +10,20 @@ const typeLabels: Record<string, string> = {
   'full-stack': 'Full-stack',
   backend: 'Backend',
   frontend: 'Frontend',
-  web3: 'Web3',
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const hasCaseStudy = !!(project.problem && project.solution && project.result)
 
   return (
-    <Link href={`/work/${project.slug}`} className="group block cursor-pointer">
+    <div className="group relative">
+      {/* Card-level link — stretched to cover the entire card */}
+      <Link
+        href={`/work/${project.slug}`}
+        className="absolute inset-0 z-0"
+        aria-label={`View ${project.title}`}
+      />
+
       <div className="relative overflow-hidden rounded-lg bg-surface border border-border transition-colors duration-300 group-hover:border-neutral-400 dark:group-hover:border-neutral-600">
         <div className="relative w-full aspect-[4/3]">
           <Image
@@ -43,20 +49,30 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </span>
           )}
         </div>
-        <div className="flex items-start justify-between gap-2 mt-3">
+        <div className="flex items-baseline justify-between gap-2 mt-3">
           <h3 className="font-serif text-base md:text-lg tracking-tight leading-snug group-hover:underline underline-offset-4 decoration-1">
             {project.title}
           </h3>
-          <span className="flex items-center gap-2 shrink-0 mt-0.5">
+          <span className="relative z-10 flex items-baseline gap-2 shrink-0">
             {project.github_url && (
-              <span className="text-[10px] font-mono text-muted transition-colors duration-300 group-hover:text-foreground">
+              <a
+                href={project.github_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-mono text-muted transition-colors duration-300 hover:text-foreground"
+              >
                 GitHub {'↗'}
-              </span>
+              </a>
             )}
             {project.live_url && (
-              <span className="text-[10px] font-mono text-muted transition-colors duration-300 group-hover:text-foreground">
+              <a
+                href={project.live_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] font-mono text-muted transition-colors duration-300 hover:text-foreground"
+              >
                 Live {'↗'}
-              </span>
+              </a>
             )}
           </span>
         </div>
@@ -74,6 +90,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
       </div>
-    </Link>
+    </div>
   )
 }

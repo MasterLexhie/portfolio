@@ -12,7 +12,6 @@ const filters: { value: Filter; label: string }[] = [
   { value: 'full-stack', label: 'Full-stack' },
   { value: 'backend', label: 'Backend' },
   { value: 'frontend', label: 'Frontend' },
-  { value: 'web3', label: 'Web3' },
   { value: 'case-study', label: 'Case studies only' },
 ]
 

@@ -11,7 +11,6 @@ const typeLabels: Record<string, string> = {
   'full-stack': 'Full-stack',
   backend: 'Backend',
   frontend: 'Frontend',
-  web3: 'Web3',
 }
 
 export function CaseStudyCard({ project, featured }: CaseStudyCardProps) {
