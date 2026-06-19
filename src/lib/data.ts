@@ -26,7 +26,7 @@ export type PortfolioProject = {
   featured: boolean
   cover_image: PortfolioImage
   role: string
-  outcome_metric: string
+  outcome_metric?: string
   type: ProjectType
   problem?: RichTextContent
   solution?: RichTextContent
@@ -74,7 +74,7 @@ function toProject(doc: Project): PortfolioProject {
     featured: doc.featured,
     cover_image: toImage(doc.cover_image) ?? { url: '/placeholder-cover.svg', alt: doc.title },
     role: doc.role,
-    outcome_metric: doc.outcome_metric,
+    outcome_metric: doc.outcome_metric ?? undefined,
     type: doc.type ?? 'full-stack',
     problem: doc.problem ?? undefined,
     solution: doc.solution ?? undefined,
